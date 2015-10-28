@@ -1,0 +1,65 @@
+*{ font-smooth:always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+
+span{ color:salmon; }
+
+body{ min-width: 700px;
+	  background-color: #D4DCE5; /*loads before background image for contrast and usability w/ slow connections*/
+	  background-size:cover;
+	  background: linear-gradient(rgba(55,55,55, 0.5), rgba(0, 0, 0, 0.5)), url(../img/backgrounds/mac_programmer.jpg) center fixed no-repeat }
+
+
+
+.login_box{ padding-top:10%; margin-left: auto; margin-right:auto; width:45%; overflow-y:scroll;}
+
+.login_header{ padding-top:10%; color:ghostwhite; text-align: center;}
+
+.login_form{ margin-top: 10%; margin-left: 10%; width:80%;}
+.login_form a{ font-weight: bold; color:#61C2C2; text-shadow:
+						    -1px -1px 0 #000,
+						     1px -1px 0 #000,
+						    -1px 1px 0 #000,
+						     1px 1px 0 #000; }
+
+.login_form input{ border:none; background: rgba(255,255,255,.6); font-weight: bold; color:#2164B2;}
+
+/* LOGIN PLACEHOLDER FONT COLOR */
+
+::-webkit-input-placeholder { color: #2164B2 !important; }
+
+:-moz-placeholder { color: #2164B2 !important; } /* Firefox 18- */
+::-moz-placeholder { color: #2164B2 !important; }/* Firefox 19+ */
+
+:-ms-input-placeholder { color: #2164B2 !important; }
+
+/* END LOGIN PLACEHOLDER FONT COLOR*/
+
+
+.form-group p{ color: #337AB7; margin-top: 3%; }
+.form-group .btn:first-child{ margin-top: 5%; }
+.form-group .btn:hover{ opacity: 0.9 !important; }
+
+/*error styling*/
+.errs{ position:absolute; left:56%; margin-top:-2%;  margin-bottom: 2%}
+.errs p{ color:red !important; font-weight: bold;}
+/*end error styling*/
+
+/*begin media queries...oy*/
+
+@media screen and (min-width:700px) and (max-width: 1030px){
+	.errs{
+		margin-top: -3%;
+		left:50%;
+	}
+}
+
+@media screen and (min-width: 551px) and (max-width:699px){
+	.errs{
+		margin-top: -5%;
+		left:47%;
+	}
+}
+@media screen and (min-width: 480px) and (max-width:550px){
+	.errs{
+		margin-top: -6%;
+	}
+}

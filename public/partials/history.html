@@ -1,0 +1,96 @@
+<div class='sidenav pull-left'>
+    <div class='nav-logo'>
+    <img src="img/icons/coding_dojo.png">
+  </div>
+  <ul>
+    <li><a href="/#/add_employee"><button class='sidenav-box'><img src="img/icons/people.png"><br>Add Employee</button></a></li>
+    <li><a href="/#/dashboard"><button class='sidenav-box'><img src="img/icons/dash.png"><br>Dashboard</button></a></li>
+    <li><a href="/#/settings"><button class='sidenav-box'><img src="img/icons/settings.png"><br>Settings</button></a></li>
+    <li><button class='sidenav-box' ng-click='functions.logout()'><img src="img/icons/logout.png"><br>Logout</button></li>
+  </ul>
+</div>
+<div class='a_d'>
+  <h2>Time Keeper - Admin History</h2>
+</div>
+<div class='container-fluid main'>
+
+  <div class='container-fluid row'>
+
+      <div class='pull-left'>
+
+    <form>
+      <input type='date' ng-model="from_date"> to <input type='date' ng-model="to_date">
+      <button type='submit' ng-click="functions.dateFilter(from_date, to_date)" class='pull-right btn btn-sm btn-date'>Filter by Date</button>
+    </form>
+
+  </div>
+
+  <div class='pull-right'>
+
+    <div class='container-sm'>
+      <div style='margin-bottom:7px; margin-left:26px;'>
+        <select class='test' ng-model="lists.place">
+          <option value="" disabled selected>Filter Location</option>
+          <option value="">All</option>
+          <option ng-repeat="l in lists.locations" value="{{l.name}}" ng-bind="l.name"></option>
+        </select>
+
+        <select style='margin-left:69px;' ng-model="lists.people">
+          <option value="" disabled selected>Filter Name</option>
+          <option value="">All</option>
+          <option ng-repeat="m in lists.members | filter:m" value="{{m.name}}" ng-bind="m.name"></option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+
+  <div class='container-sm table-wrap'>
+    <div class='pull-right'>
+      <ul class='filter-ul'>
+        <li><a tabindex='1' ng-click="functions.dateFilter('all')">All</a></li>
+        <li><a tabindex='2' ng-click="functions.dateFilter('this_week')">This week</a></li>
+        <li><a tabindex='3' ng-click="functions.dateFilter('last_week')">Last week</a></li>
+        <li><a tabindex='4' ng-click="functions.dateFilter('this_month')">This month</a></li>
+        <li><a tabindex='5' ng-click="functions.dateFilter('last_month')">Last Month</a></li>
+      </ul>
+    </div>
+    <table fixed-header table-height='40em' class='table table-striped time-table'>
+      <thead>
+        <tr>
+          <th><a href="" ng-click="tables.history.order='date';      tables.history.reverse=!reverse">Date</a></th>
+          <th><a href="" ng-click="tables.history.order='name';      tables.history.reverse=!reverse">Name</a></th>
+          <th><a href="" ng-click="tables.history.order='title';     tables.history.reverse=!reverse">Title</a></th>
+          <th><a href="" ng-click="tables.history.order='team';      tables.history.reverse=!reverse">Team</a></th>
+          <th><a href="" ng-click="tables.history.order='location';  tables.history.reverse=!reverse">Location</a></th>
+          <th><a href="" ng-click="tables.history.order='clock_in';  tables.history.reverse=!reverse">Clock IN</a></th>
+          <th><a href="" ng-click="tables.history.order='clock_out'; tables.history.reverse=!reverse">Clock OUT</a></th>
+          <th><a href="" ng-click="tables.history.order='personal';  tables.history.reverse=!reverse">Personal Time</a></th>
+          <th><a href="" ng-click="tables.history.order='billed';    tables.history.reverse=!reverse">Billed Hours</a></th>
+          <th>Report</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in tables.history | filter: { location:lists.place, name:lists.people } | orderBy:tables.history.order:tables.history.reverse">
+          <td id='date' ng-bind="row.clock_in | date:'dd/M (EEE)'"></td>
+          <td ng-if="row.picture != null">
+            <div><img height='30' width='30' class='img-rounded' ng-src="/img/profile_pic/{{variables.biz_id}}/{{row.picture}}" /></div>{{row.name}}</td>
+          <td ng-if="row.picture == null">
+            <div>
+              <img height='30' width='30' class='img-rounded' src="/img/profile_pic/anon.png" /></div>{{row.name}}</td>
+          <td id='title'    ng-bind="row.title"></td>
+          <td id='team'     ng-bind="row.team"></td>
+          <td id='location' ng-bind="row.location"></td>
+          <td id='in'       ng-bind="row.clock_in | date:'shortTime'"></td>
+          <td id='out'      ng-bind="row.clock_out | date:'shortTime'"></td>
+          <td id='pt'       ng-bind="row.personal_time"></td>
+          <td id='billed'   ng-bind="row.billed"></td>
+          <td id='report'   ng-bind="row.report"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-danger" ng-csv="functions.csvBody" csv-header="variables.csvHead" filename="history.csv">Download CSV</button>
+  </div>
+</div>

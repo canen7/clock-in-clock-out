@@ -1,0 +1,151 @@
+<div class='sidenav pull-left'>
+  <div class='nav-logo'>
+    <img src="img/icons/coding_dojo.png">
+  </div>
+  <ul>
+    <li><a href="/#/add_employee"><button class='sidenav-box'><img src="img/icons/people.png"><br>Add Employee</button></a></li>
+    <li><a href="/#/dashboard"><button class='sidenav-box'><img src="img/icons/dash.png"><br>Dashboard</button></a></li>
+    <li><a href="/#/history"><button class='sidenav-box'><img src="img/icons/history.png"><br>History</button></a></li>
+    <li><button class='sidenav-box' ng-click='functions.logout()'><img src="img/icons/logout.png"><br>Logout</button></li>
+  </ul>
+</div>
+<div class='a_d'>
+  <h2>Edit Settings</h2>
+</div>
+<div class='container-fluid main'>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" ng-click="functions.setPage('user')"    >User</button>
+    <button type="button" class="btn btn-default" ng-click="functions.setPage('ip')"      >Ip Addresses</button>
+    <button type="button" class="btn btn-default" ng-click="functions.setPage('location')">Locations</button>
+  </div>
+
+  <p ng-if="variables.msg !== null" ng-bind="variables.msg"></p>   
+
+  <div ng-if="variables.page== 'user'">
+    <form name="forms.userForm" ng-submit="functions.submitForm(forms.userForm.$valid, 'user')" class="form-horizontal" novalidate>
+      <table class='table settings-table'>
+        <thead>
+          <tr>
+            <th colspan="2">User Settings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label for="inputUserName" class="control-label">User Name:</label></td>
+            <td>
+              <input type="text" ng-model="forms.user.name" ng-pattern="variables.pattern.letter" name="name" id="inputUserName" class="form-control" placeholder="Your name" required autofocus>
+              <div ng-messages="forms.userForm.name.$error" ng-if="forms.userForm.$submitted || !forms.userForm.name.$pristine">
+                <p ng-message="required" class="help-block">Name is required.</p>
+                <p ng-message="pattern" class="help-block">Letters only.</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="inputEmail" class="control-label">Email*</label></td>
+            <td>
+              <input type="email" ng-model="forms.user.email" ng-pattern="variables.pattern.email" ngTrim="true" name="email" id="inputEmail" class="form-control" placeholder="Email (Used for Login)" required />
+              <div ng-messages="forms.userForm.email.$error" ng-if="forms.userForm.$submitted || !forms.userForm.email.$pristine">
+                <p ng-message="required" class="help-block">Email is required.</p>
+                <p ng-message="pattern" class="help-block">Invalid email.</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="inputPassword" class="control-label">Password</label></td>
+            <td><input type="password" ng-model="forms.user.password" ng-change="functions.isMatch()" ng-pattern="variables.pattern.password" name="password" id="inputPassword" class="form-control" placeholder="Password" ng-minlength="6" ng-maxlength="72"/></td>
+          </tr>
+          <tr>
+            <td><label for="inputConfirm" class="control-label">Confirm Password</label></td>
+            <td>
+              <input type="password" ng-model="forms.user.confirm" ng-change="functions.isMatch()" name="confirm" class="form-control" placeholder="Confirm Password" id="inputConfirm"/>
+              <div ng-messages="forms.userForm.password.$error" ng-if="forms.userForm.$submitted || !forms.userForm.password.$pristine">
+                <p ng-message="required" class="help-block">Password is required.</p>
+                <p ng-message="minlength" class="help-block">Password is too short.</p>
+                <p ng-message="maxlength" class="help-block">Password is too long.</p>
+                <p ng-message="pattern" class="help-block">Password can containe letters and numbers only.</p>
+              </div>
+              <div ng-messages="forms.userForm.confirm.$error" ng-if="forms.userForm.$submitted || !forms.userForm.confirm.$pristine">
+                <p ng-message="required" class="help-block">Password confirmation is required.</p>
+                <p ng-message="match" class="help-block">Password doesn't match</p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>        
+      <button class="btn btn-in" type='submit'>Update User</button>
+    </form>
+
+    <!-- Update Company Name -->
+    <form name="forms.companyNameForm" ng-submit="functions.submitForm(forms.companyNameForm.$valid, 'name')" novalidate>
+      <table class="table settings-table">
+        <thead>
+          <tr>
+            <th colspan="2">Company Settings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><label for="inputCompany" class="control-label">Company Name:</label></td>
+            <td><input type="text" ng-model="forms.companyName.name" ng-pattern="variables.pattern.letter" name="name" id="inputCompany" class="form-control" placeholder="example: Coding Dojo" required></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-in">Update Company Name</button>
+    </form>
+  </div>
+
+  <!-- IP pages -->
+  <div ng-if="variables.page == 'ip'">
+    <form name="forms.addInputForm" ng-submit="functions.submitForm(forms.addInputForm.$valid, 'ip')" novalidate>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" ng-click="deleteRow(row.id)"><i class="fa fa-plus"></i></button>
+        </span>
+        <input type="text" class="form-control" name="input" ng-model="forms.addInput.ip" placeholder="new ip address"/>
+      </div><!-- /input-group -->
+    </form>
+    <table class="table settings-table">
+      <thead>
+        <tr>
+          <th>IP Address <small>(Double click to edit)</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in tables.ip_addresses">
+          <td>
+            <span  ng-if="row.edit == false" ng-bind="row.address" ng-dblclick="row.edit = true"></span>
+            <input ng-if="row.edit == true" type="text" class="form-control" ng-model="row.address" to-focus="row.address" ng-blur="functions.updateRow(row.id, row.address, $index)"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Add/Edit Location -->
+  <div ng-if="variables.page == 'location'">
+    <form name="forms.addInputForm" ng-submit="functions.submitForm(forms.addInputForm.$valid, 'location')" novalidate>
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" ng-click="functions.deleteRow(row.id)"><i class="fa fa-plus"></i></button>
+        </span>
+        <input type="text" class="form-control" name="location" ng-model="forms.addInput.location" placeholder="New Location"/>
+      </div><!-- /input-group -->
+    </form>
+    <table class="table settings-table">
+      <thead>
+        <tr>
+          <th>Locations <small>(Double click to edit)</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in tables.locations">
+          <td>
+            <span ng-if="row.edit == false" ng-bind="row.name" ng-dblclick="row.edit = true"></span>
+            <input ng-if="row.edit == true" type="text" class="form-control" ng-model="row.name" to-focus="row.name" ng-blur="functions.updateRow(row.id, row.name, $index)"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

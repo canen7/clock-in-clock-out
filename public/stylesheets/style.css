@@ -1,0 +1,263 @@
+
+/********************  HTML ATTRIBUTE CSS  ******************************/
+
+*{ font-smooth:always; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;}
+html{ height: 100%; }
+body{ min-width: 970px; }
+select{ height: auto !important; }
+textarea{ resize:none; height:10em; width:100%; }
+
+input[readonly] { background-color: white !important; cursor: text !important; }
+input, button, select, textarea { color: black; }
+
+ul a:focus{
+  font-weight: bold;
+  color:#03C8A2;
+  outline:0;
+  text-decoration: none;
+}
+
+.emphasis { color:salmon; }
+
+
+
+/********************  END  HTML ATTRIBUTE CSS  *************************/
+
+/********************  BOOTSTRAP MODIFICATIONS  *************************/
+
+
+.container{ width:85%; }
+
+.container-fluid ul li{ display: inline; }
+.container-fluid ul li:nth-child(-n+5){ margin-right:8px; }
+.container-fluid ul li:hover{ cursor: pointer; }
+
+
+.container-fluid h5{ margin-bottom: 2%; }
+
+.navbar-fixed-top{ top:-1px; }
+.navbar-inverse{ border-radius:0px !important; }
+
+.jumbotron h1{ text-align: center; }
+
+.col-md-12 ul{ margin-top:1em; }
+.col-md-12 ul li{ margin-left:1em; }
+
+.form-signin{ margin-bottom: 10%; }
+.form-group{ margin-top: 0px !important; }
+
+.add_table .btn-lg, .add_table .btn-group-lg>.btn { font-size: 1em !important;}
+
+.help-block{ display:inline !important; color:red;}
+
+/*#row-report{ width:20px; white-space:nowrap; overflow: hidden; text-overflow: ellipsis; }*/
+
+/********************  END BOOTSTRAP MODIFICATIONS  ********************/
+
+/********************  TABLES  ******************************/
+
+table{ margin-bottom: none !important; }
+table, thead, tr{ margin-top: 2%; }
+table thead th{ background-color: #C0C5CE; border:none !important;}
+
+table tr td { vertical-align: bottom !important; text-align: center;}
+table tr:first-child td { border-top: none !important; }
+table tr:nth-child(odd), table tr:nth-child(even){ background-color: transparent; }
+table tr:nth-child(even) { background-color: #eee; }
+table tr:nth-child(odd) { background-color: #fff; }
+
+td img{ margin-right: 5%; }
+tr td .names{ font-style: italic; font-size: .9em; color:#9F9F9F; }
+tr td .status{ font-weight: bold; font-size: .9em; color:#9F9F9F; }
+hr{ border:1px solid #CECDCC; }
+
+
+/*Widths for history pages -- bug workaround for sticky table head*/
+#date, #title, #in, #out, #pt, #billed, #created{ width:10%;}
+#name{ width:14%; }
+#team, #location{ width: 10%;}
+#report{ width: 55px;}
+
+.table-head { border:none !important; border-top-right-radius: 1em !important; border-top-left-radius: 1em !important;
+              background-color: #C0C5CE !important; color: #333333; margin-bottom: -2% !important; width:100% !important; }
+
+.add_table{ margin-top: 3%; font-size:1em; }
+.add_table>tbody>tr>td{ width:25%; min-width: 195px; text-align: left !important;}
+.add_table>tbody>tr>td:first-child{ border-right: 1px solid #DDDDDD; }
+.add_table>tbody>tr>td:last-child{ border-right: none; }
+.add_table th{ background-color: #428BCB; color:white; border-bottom: none !important;}
+.add_table .form-control{ font-size:1em !important; width:30em; border:none; box-shadow: none; }
+
+.time-table { margin-top: 0px !important; }
+.filter-ul{ margin-bottom: 0px !important; }
+
+.settings-table>tbody>tr>td, .settings-table>thead>tr>th { text-align: left !important; }
+
+.table-head tr td{ border:none !important;}
+
+.snap-shot tbody tr:last-child td:last-child { border-bottom-right-radius: 1em !important; }
+.snap-shot tbody tr td:nth-child(2){ background-color: #F5F6F7 !important; }
+
+.show-table{ margin-top:31%; }
+
+.main .table {width: 100%; min-width: 640px;}
+
+.table thead tr th { text-align: center; }
+
+/*.main .table tr td:nth-child(2) {text-align: center;}*/
+
+/********************  END TABLE CSS  ******************************/
+
+/********************  MODAL CSS  ******************************/
+
+.ng-modal-overlay { position:fixed; z-index:9999; top:0; left:0; width:100%; height:100%;
+                    background-color:#000000; opacity: 0.8; }
+
+.ng-modal-dialog { color:black; padding: 1% 5% 1% 5%; z-index:10000; position: absolute; width: 10em;
+                   height: 3  5em; overflow-y: none; top: 35%; left: 50%;
+                   transform: translate(-50%, -50%);
+                  -webkit-transform: translate(-50%, -50%);
+                  -moz-transform: translate(-50%, -50%);
+                   background-color: #fff; box-shadow: 4px 4px 80px #000; }
+
+.ng-modal-dialog-content { padding:10px; text-align: left; }
+
+.ng-modal-close {  color:white; position: fixed; top: 3px; right: 5px; padding: 5px; cursor: pointer; z-index: inherit;
+                   font-size: 120%; display: inline-block; font-weight: bold; font-family: 'arial', 'sans-serif'; }
+
+.ng-modal-close:hover{ color:#03C8A2; }
+
+.ng-modal-settings { background-color: lightgray; }
+
+.dialog-content-settings {  margin-top: 15%; }
+
+ .clockout-form { margin-top: 15%; }
+
+.modal-settings h1{ color:white; }
+.modal-settings button { margin-top: .5em }
+.modal-settings form textarea { height:15em; }
+
+
+/********************  END MODAL CSS  ******************************/
+
+/********************  CUSTOM BUTTONS  ******************************/
+
+
+button a{ text-decoration: none; color:white; }
+button a:hover{ text-decoration: none; color:#4584EF; }
+
+.btn-date{ color:white; background-color: #0D81FF;  height:39px;}
+
+@-moz-document url-prefix() {
+  .btn-date {
+     height:29px;
+  }
+}
+@-moz-document url-prefix() {
+
+  ul li:nth-child(-n+4){
+      margin-right:10px;
+  }
+
+}
+
+.btn-file { position: relative; overflow: hidden; }
+.btn-file input[type=file] { position: absolute; top: 0; right: 0; min-width: 100%; min-height: 100%; font-size: 100px;
+                             text-align: right; filter: alpha(opacity=0); opacity: 0; cursor: inherit; display: block; }
+
+.btn-in{ background-color: #008500; color:white }
+.btn-out{ background-color: #EE001D; color:white; }
+
+
+.clk-btn{ width:10em; }
+.drop-btn{ height:auto; }
+
+/********************  END BUTTON CSS  ****************************/
+
+/********************  INFO GROUP CSS *************************/
+
+
+.info{ margin-top: 5%; }
+.info h5{ margin-top: -1%; }
+.info h5 , select{ line-height: 2em; display: inline-block; }
+
+
+/********************  END INFO GROUP  *************************/
+
+/********************  MISC CSS  ****************************/
+
+.in { color:#029708; }
+.out { color:#EE001D; }
+.in, .out { font-weight: bold;  }
+
+td .checkbox { position:absolute !important; }
+tr td img { margin-left: 4px; }
+
+.employee-info div{ margin-top: 5% !important; }
+.employee-info table{ min-width:400px !important; }
+
+
+.filter-box{ margin-bottom:-26px; margin-left:-41px; }
+
+#settings{ margin-top: 15%; margin-bottom: 2%; }
+
+#hrs{ outline:none; background:none; padding-bottom: 0em; border:none; height:1.5em !important; width:3em; }
+
+
+  body{
+    min-width: 900px;
+    height: 100%;
+  }
+  /*****************************/
+  /*******top nav bar**********/
+  /*****************************/
+
+  .navbar{ background-color: #242424; border-radius:0% !important; margin-bottom: 0% !important;}
+  .navbar button{margin:1% 1% 0 0;}
+/*  .nav-logo {height:5em;}*/
+  .nav-logo {height:4em;}
+  .nav-logo img{margin-left:2em; height:70px; width:150px;}
+
+  /*****************************/
+  /*******side nav bar**********/
+  /*****************************/
+
+  /*.sidenav{background-color: #242424; height:56em; min-width:15em; margin-top: -1.4em !important;}*/
+  .sidenav{background-color: #242424; min-width:15em; height:initial; }
+  .sidenav ul{display: inline;}
+  .sidenav li input{width:98%; text-indent: 1em; font-size: 1em; outline:none;}
+
+  .sidenav ::-webkit-input-placeholder { font-size: 1.2em; }
+  .sidenav ::-moz-placeholder { font-size: 1.2em; } /* firefox 19+ */
+  .sidenav :-ms-input-placeholder { font-size: 1.2em; } /* ie */
+  .sidenav input:-moz-placeholder { font-size: 1.2em; }
+
+  .sidenav button:focus{outline:none;}
+  .sidenav-box{background:#525461; color:white; height:11.3em; width:98%; border-style: none; border-bottom: 3px solid #242424; position:relative;   
+                        -webkit-transition: all .3s ease-in-out;
+                        -moz-transition: all .3s ease-in-out;
+                        -o-transition: all .3s ease-in-out;
+                        transition: all .3s ease-in-out;}
+  .sidenav-box:hover{background-color: #242424;}
+/*  .sidenav-box:first-child { margin-bottom: % !important }*/
+  .sidenav-box:nth-child(-n+2){ margin-bottom: 2%;}
+  .sidenav-box a, .sidenav-box a:hover{text-decoration: none;}
+  .sidenav-box img{height:5em; width:5em;}
+
+
+  /*****************************/
+  /******content information****/
+  /*****************************/
+
+  .main{display: inline-block; position:absolute; margin-top: 1%; margin-left: 3% !important; width:76%;}
+
+
+  .e_d{background-color: #428BCB !important; color:white !important; height:5.4em; text-align: center;} /*jumbotron employee dashboard*/
+  .a_d{background-color: #03C8A2 !important; color:white !important; height:5.4em; margin-bottom: 2%; text-align: center;} /*jumbotron for admin partials*/
+
+  h2 { margin-top: 0px;}
+  #content { height: 100%;}
+  .e_d h2 { padding-top: 20px;}
+  .a_d h2 { padding-top: 20px;}
+
+  .employee-info{ margin-top:5px; }

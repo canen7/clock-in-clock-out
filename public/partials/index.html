@@ -1,0 +1,25 @@
+<div class='login_box'>
+	<div class='login_header'>
+		<h2>Coding Dojo Clock IN n OUT</h2>
+	</div>
+	<div class='container-fluid login_form'>
+		<p ng-if="variables.errorMessage !== null" ng-bind="variables.errorMessage"></p>
+	  <form name="forms.loginForm" ng-submit="functions.submitForm(forms.loginForm.$valid)" class='form-group' novalidate>
+
+			<label for="inputEmail" class="sr-only">Email</label>
+			<input type="email"    ng-model="forms.login.email"    ng-trim="true" class="form-control" placeholder="Email"    required autofocus>
+			<br>
+
+			<label for="inputPassword" class="sr-only">Password</label>
+			<input type="password" ng-model="forms.login.password" ng-trim="true" class="form-control" placeholder="Password" required>
+			<br>
+
+			<button class='btn btn-md btn-success form-control' type="submit" ng-disabled="login_form.$invalid">Sign In</button>
+
+			<br>
+
+			<a href="/#/register"><button class='btn btn-md btn-primary form-control'>Register</button></a>
+		</form>
+
+	</div>
+</div>

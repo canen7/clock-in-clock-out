@@ -1,0 +1,38 @@
+<div class='sidenav pull-left'>
+  <div class='nav-logo'>
+    <img src="img/icons/coding_dojo.png">
+  </div>
+    <form name="forms.loginForm" ng-submit="functions.submitForm(forms.loginForm.$valid)" class='form-group' novalidate>
+    <ul>
+      <li><input type='email'    ng-model="forms.login.email"    ng-trim="true" name="email"    placeholder='email'    required autofocus></li>
+      <li><input type='password' ng-model="forms.login.password" ng-trim="true" name="password" placeholder='password' required></li>
+      <li><button type="submit" ng-disabled="login_form.$invalid" class='sidenav-box'><img src="img/icons/login.png"><br>Log IN</button></li>
+    </ul>
+  </form>
+</div>
+<div class='e_d'>
+  <h2>Time Keeper - Employee</h2>
+</div>
+<div class='container-fluid main'>
+  <p ng-if="variables.msg !== null" ng-bind="variables.msg"></p>
+  <table class='table time-table' ng-model='table'>
+    <thead>
+      <tr>
+        <th><a href="" ng-click="order='name'; reverse=!reverse">Name</a></th>
+        <th><a href="" ng-click="order='is_logged'; reverse=!reverse">Clocked Status</a></th>
+        <th><a href="" ng-click="order='locations'; reverse=!reverse">Location</a></th>
+        <th><a href="" ng-click="order='team'; reverse=!reverse">Team</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in tables.users | filter: { locations:place, name:member} | orderBy:tables.users.order:reverse">
+        <td ng-if="row.picture != null"><img height='30' width='30' class='img-rounded' ng-src="/img/profile_pic/{{variables.biz_id}}/{{row.picture}}" />{{row.name}}</td>
+        <td ng-if="row.picture == null"><img height='30' width='30' class='img-rounded' src="/img/profile_pic/anon.png" />{{row.name}}</td>
+        <td ng-if="row.is_logged == true"><img src="../img/icons/in.png"></td>
+        <td ng-if="row.is_logged == false"><img src="../img/icons/out.png"></td>
+        <td ng-bind="row.locations"></td>
+        <td ng-bind="row.team"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

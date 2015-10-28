@@ -1,0 +1,62 @@
+<div class='sidenav pull-left'>
+    <div class='nav-logo'>
+    <img src="img/icons/coding_dojo.png">
+  </div>
+  <ul>
+    <li><a href="/#/add_employee"><button class='sidenav-box'><img src="img/icons/people.png"><br>Add Employee</button></a></li>
+    <li><a href="/#/history"><button class='sidenav-box'><img src="img/icons/history.png"><br>History</button></a></li>
+    <li><a href="/#/settings"><button class='sidenav-box'><img src="img/icons/settings.png"><br>Settings</button></a></li>
+    <li><button class='sidenav-box' ng-click='functions.logout()'><img src="img/icons/logout.png"><br>Logout</button></li>
+  </ul>
+</div>
+<div class='a_d'>
+  <h2>Time Keeper - Admin Dashboard</h2>
+</div>
+<div class='container-fluid main'>
+  <div class='container-fluid'>
+        <div>
+          <select ng-model="lists.place">
+            <option value="" disabled selected>Filter Location</option>
+            <option value="">All</option>
+            <option ng-repeat="l in lists.locations" value="{{l.name}}" ng-bind="l.name"></option>
+          </select>
+          <select style='margin-left:69px;' ng-model="lists.people">
+            <option value="" disabled selected>Filter Name</option>
+            <option value="">All</option>
+            <option ng-repeat="m in lists.members | filter:m" value="{{m.name}}" ng-bind="m.name"></option>
+          </select>
+        </div>
+    <table class='table'>
+      <thead>
+        <th><a href="" ng-click="tables.dashboard.order='name';       tables.dashboard.reverse=!reverse">Name</a></th>
+        <th><a href="" ng-click="tables.dashboard.order='status';     tables.dashboard.reverse=!reverse">Status</a></th>
+        <th><a href="" ng-click="tables.dashboard.order='title';      tables.dashboard.reverse=!reverse">Title</a></th>
+        <th><a href="" ng-click="tables.dashboard.order='team';       tables.dashboard.reverse=!reverse">Team</a></th>
+        <th><a href="" ng-click="tables.dashboard.order='supervisor'; tables.dashboard.reverse=!reverse">Supervisor</a></th>
+        <th><a href="" ng-click="tables.dashboard.order='location';   tables.dashboard.reverse=!reverse">Location</a></th>
+        <th>Note</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in tables.dashboard | filter: { locations:lists.place, name:lists.people} | orderBy:tables.dashboard.order:tables.dashboard.reverse">
+          <td ng-if="row.picture != null">
+              <div align='center'><img height='30' width='30' class='img-rounded' ng-src="/img/profile_pic/{{variables.biz_id}}/{{row.picture}}" /></div>
+              {{row.name}}
+          </td>
+
+          <td ng-if="row.picture == null">
+              <div align='center'><img height='30' width='30' class='img-rounded' src="/img/profile_pic/anon.png" /></div>
+              {{row.name}}
+          </td>
+          <td ng-bind="row.status"></td>
+          <td ng-bind="row.title"></td>
+          <td ng-bind="row.team"></td>
+          <td ng-bind="row.supervisor"></td>
+          <td ng-bind="row.locations"></td>
+          <td ng-bind="row.note"></td>
+          <td><a ng-href="/#/user/{{row.id}}">Show</a>/<a ng-href="/#/edit/{{row.id}}">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
